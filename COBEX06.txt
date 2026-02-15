@@ -1,0 +1,49 @@
+       IDENTIFICATION DIVISION.                                         00010000
+       PROGRAM-ID. COBEX06.                                             00020000
+       DATA DIVISION.                                                   00030000
+       WORKING-STORAGE SECTION.                                         00040000
+      *INPUT VARIABLES.                                                 00050000
+       77 WS-A    PIC 9(5)      VALUE 45.                               00060000
+       77 WS-B    PIC 9(5)      VALUE 55.                               00070000
+       77 WS-C    PIC S9(5)     VALUE -67.                              00080000
+       77 WS-D    PIC 9(4)V9(2) VALUE 45.55.                            00090000
+       77 WS-E    PIC 9(6)      VALUE 251356.                           00100000
+       77 WS-F    PIC S9(4)     VALUE -77.                              00110000
+       77 WS-G    PIC 9(4)      VALUE 77.                               00120000
+       77 WS-H    PIC 9(5)V9(2) VALUE 11123.                            00130000
+       77 WS-DATE PIC 9(8).                                             00140000
+      *OUTPUT VARIABLES.                                                00150000
+       77 WS-A-EDITED      PIC ZZZZZ.                                   00160000
+       77 WS-B-EDITED      PIC *****.                                   00170000
+       77 WS-C-EDITED      PIC 9(3)DB.                                  00180000
+       77 WS-D-EDITED      PIC ZZZZ.ZZ.                                 00190000
+       77 WS-E-EDITED      PIC 99,99,99.                                00200000
+       77 WS-DATE-EDITED   PIC 99/99/9999.                              00210000
+       77 WS-F-EDITED      PIC -9(4).                                   00220000
+       77 WS-G-EDITED      PIC +9(4).                                   00230000
+       77 WS-H-EDITED      PIC 9(5).9(2).                               00240000
+       PROCEDURE DIVISION.                                              00250000
+       0000-MAIN-PARA.                                                  00260000
+            MOVE 45 TO WS-A-EDITED.                                     00270000
+            MOVE 55 TO WS-B-EDITED.                                     00280000
+            MOVE -67 TO WS-C-EDITED.                                    00290000
+            MOVE 45.55 TO WS-D-EDITED.                                  00300000
+            MOVE 251356 TO WS-E-EDITED.                                 00310000
+            MOVE -77 TO WS-F-EDITED.                                    00320000
+            MOVE 77 TO WS-G-EDITED.                                     00330000
+            MOVE 11123 TO WS-H-EDITED.                                  00340000
+            ACCEPT WS-DATE FROM DATE YYYYMMDD.                          00350000
+            MOVE WS-DATE(1:4) TO WS-DATE-EDITED(7:4).                   00360000
+            MOVE '/' TO WS-DATE-EDITED(3:1).                            00370000
+            MOVE WS-DATE(5:2) TO WS-DATE-EDITED(4:2).                   00380000
+            MOVE '/' TO WS-DATE-EDITED(6:1).                            00390000
+            MOVE WS-DATE(7:2) TO WS-DATE-EDITED(1:2).                   00400000
+            DISPLAY "EDITED OUTPUT OF WS-A : " WS-A-EDITED.             00410000
+            DISPLAY "EDITED OUTPUT OF WS-B : " WS-B-EDITED.             00420000
+            DISPLAY "EDITED OUTPUT OF WS-C : " WS-C-EDITED.             00430000
+            DISPLAY "EDITED OUTPUT OF WS-D : " WS-D-EDITED.             00440000
+            DISPLAY "EDITED OUTPUT OF WS-E : " WS-E-EDITED.             00450000
+            DISPLAY "EDITED OUTPUT OF WS-DATE : " WS-DATE-EDITED.       00460000
+       0000-TERM-PARA.                                                  00470000
+           STOP RUN.                                                    00480000
+
