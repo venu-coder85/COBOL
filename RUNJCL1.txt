@@ -1,6 +1,11 @@
-//TECN091A  JOB  NOTIFY=&SYSUID
-//STEP02    EXEC PGM=COBEX01
-//STEPLIB DD DSN=TECN091.COB.LOAD,DISP=SHR
-//SYSIN  DD *
+//TECN091Y JOB NOTIFY=&SYSUID,CLASS=A,                                  
+//             MSGCLASS=X,MSGLEVEL=(1,1)                                
+//JOBLIB   DD DSN=TECN091.MYLIB.LOADLIB,DISP=SHR                        
+//TECN091U EXEC PGM=COBEX01
+//SYSOUT   DD SYSOUT=*                                                  
+//SYSPRINT DD SYSOUT=*                                                  
+//INCUSPS DD DSN=TECN091.MYDATA.COB05.PS1A,DISP=SHR
+//OUTCUSPS DD DSN=TECN091.MYDATA.OUTPUT.PS2AA,DISP=(NEW,CATLG,DELETE),
+//        SPACE=(TRK,(5,5)),DCB=(LRECL=80,RECFM=FB,BLKSIZE=800)
+//SYSIN DD *
 /*
-//
