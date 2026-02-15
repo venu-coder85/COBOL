@@ -1,0 +1,62 @@
+       IDENTIFICATION DIVISION.                                         00010000
+       PROGRAM-ID. COBEX05.                                             00020000
+       ENVIRONMENT DIVISION.                                            00030000
+       CONFIGURATION SECTION.                                           00040000
+       SOURCE-COMPUTER. TEST-ZOS.                                       00050000
+       OBJECT-COMPUTER. DEV-ZOS.                                        00060000
+       DATA DIVISION.                                                   00070000
+       WORKING-STORAGE SECTION.                                         00080000
+      *"INPUT VARIABLES"                                                00090000
+       01 WS-PASSENGER-DETAILS.                                         00100000
+          05 WS-PASSENGER-NAME  PIC A(20).                              00110000
+          05 WS-AADHAR-NUMBER   PIC X(12).                              00120000
+          05 WS-DOB   PIC X(8).                                         00130000
+       01 WS-TRAIN-FARE      PIC 9(5)V9(2).                             00140000
+      *"OUTPUT VARIABLES"                                               00150000
+       01 WS-PASSENGER-DETAILS-PRINT.                                   00160000
+          05 WS-PASSENGER-NAME-PRINT PIC A(20).                         00170000
+          05 WS-AGE-PRINT  PIC 9(2).                                    00180000
+          05 WS-AADHAR-NUMBER-PRINT PIC 9999/9999/9999.                 00190000
+          05 WS-TRAIN-FARE-PRINT PIC ZZ99.                              00200000
+          05 WS-DOB-PRINT PIC 99/99/9999.                               00210000
+          05 WS-TRAIN-FARE-DOLLAR-PRINT PIC $9(3).                      00220000
+       01 WS-DATE1 PIC 9(4).                                            00230000
+       01 WS-DATE2 PIC 9(4).                                            00240000
+       PROCEDURE DIVISION.                                              00250000
+       0000-MAIN-PARA.                                                  00260000
+            PERFORM 1000-INITIALIZE-PARA THRU                           00270000
+                       1000-INITIALIZE-PARA-EXIT.                       00280000
+            PERFORM 2000-PROCESS-PARA THRU                              00290000
+                       2000-PROCESS-PARA-EXIT.                          00300000
+            PERFORM 9000-TERMINATION-PARA THRU                          00310000
+                       9000-TERMINATION-PARA-EXIT.                      00320000
+       0000-MAIN-PARA-EXIT.                                             00330000
+               EXIT.                                                    00340000
+       1000-INITIALIZE-PARA .                                           00350000
+            INITIALIZE WS-PASSENGER-DETAILS-PRINT.                      00360000
+       1000-INITIALIZE-PARA-EXIT.                                       00370000
+            EXIT.                                                       00380000
+       2000-PROCESS-PARA.                                               00390000
+            MOVE 'RAHUL KANNAN' TO WS-PASSENGER-DETAILS.                00400000
+            MOVE '750012342345' TO WS-AADHAR-NUMBER.                    00410000
+            MOVE 20101990 TO WS-DOB.                                    00420000
+            MOVE 0780 TO WS-TRAIN-FARE.                                 00430000
+            MOVE 'K.RAHUL' TO WS-PASSENGER-NAME-PRINT.                  00440000
+            MOVE FUNCTION CURRENT-DATE(1:4) TO WS-DATE1.                00450000
+            MOVE WS-DOB(5:4) TO WS-DATE2.                               00460000
+            COMPUTE WS-AGE-PRINT = WS-DATE1 - WS-DATE2.                 00470000
+            MOVE WS-DOB TO WS-DOB-PRINT.                                00480000
+            COMPUTE WS-TRAIN-FARE-DOLLAR-PRINT = WS-TRAIN-FARE / 76     00490000
+            MOVE WS-AADHAR-NUMBER TO WS-AADHAR-NUMBER-PRINT.            00500000
+            DISPLAY "PASSENGER NAME:" WS-PASSENGER-NAME-PRINT.          00510000
+            DISPLAY "PASSENGER AGE :" WS-AGE-PRINT.                     00520000
+            DISPLAY "PASSENGER DOB :" WS-DOB-PRINT.                     00530000
+            DISPLAY "PASSENGER AADHAR NUMBER:" WS-AADHAR-NUMBER-PRINT.  00540000
+            DISPLAY "TRAIN FARE:" WS-TRAIN-FARE-DOLLAR-PRINT.           00550000
+       2000-PROCESS-PARA-EXIT.                                          00560000
+            EXIT.                                                       00570000
+       9000-TERMINATION-PARA.                                           00580000
+            EXIT.                                                       00590000
+       9000-TERMINATION-PARA-EXIT.                                      00600000
+            STOP RUN.                                                   00610000
+
